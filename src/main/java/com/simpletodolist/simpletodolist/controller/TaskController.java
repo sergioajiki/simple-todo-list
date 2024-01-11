@@ -1,6 +1,7 @@
 package com.simpletodolist.simpletodolist.controller;
 
 import com.simpletodolist.simpletodolist.dto.TaskDto;
+import com.simpletodolist.simpletodolist.dto.TaskWithDateDto;
 import com.simpletodolist.simpletodolist.service.TaskService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -23,8 +24,8 @@ public class TaskController {
 
     @PostMapping
     @Operation(description = "Registrar Tarefa")
-    public ResponseEntity<TaskDto> createTask(@RequestBody TaskDto taskDto) {
-        TaskDto createdTask = taskService.create(taskDto);
+    public ResponseEntity<TaskWithDateDto> createTask(@RequestBody TaskDto taskDto) {
+        TaskWithDateDto createdTask = taskService.create(taskDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdTask);
     }
 }

@@ -1,6 +1,7 @@
 package com.simpletodolist.simpletodolist.service;
 
 import com.simpletodolist.simpletodolist.dto.TaskDto;
+import com.simpletodolist.simpletodolist.dto.TaskWithDateDto;
 import com.simpletodolist.simpletodolist.entity.Task;
 import com.simpletodolist.simpletodolist.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +16,10 @@ public class TaskService {
         this.taskRepository = taskRepository;
     }
 
-    public TaskDto create(TaskDto taskDto) {
+    public TaskWithDateDto create(TaskDto taskDto) {
         Task taskToSave = TaskDto.taskDtoToTask(taskDto);
         taskRepository.save(taskToSave);
-        TaskDto savedTask = TaskDto.taskToTaskDto(taskToSave);
-
+        TaskWithDateDto savedTask = TaskWithDateDto.taskToTaskWithDateDto(taskToSave);
         return savedTask;
     }
 }
