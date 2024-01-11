@@ -7,6 +7,9 @@ import com.simpletodolist.simpletodolist.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class TaskService {
     private final TaskRepository taskRepository;
@@ -21,5 +24,21 @@ public class TaskService {
         taskRepository.save(taskToSave);
         TaskWithDateDto savedTask = TaskWithDateDto.taskToTaskWithDateDto(taskToSave);
         return savedTask;
+    }
+
+    public List<TaskWithDateDto> getAllTasks() {
+        List<Task> listTask = taskRepository.findAll();
+        List<TaskWithDateDto> fullList = new ArrayList<>();
+        listTask.forEach(task -> {
+            TaskWithDateDto taskWithDateDto = new TaskWithDateDto(
+                    task.getId(),
+                    task.getTaskName(),
+                    task.getDescription(),
+                    task.getTaskCreationDate(),
+                    task.getPriority()
+            );
+            fullList.add(taskWithDateDto);
+        });
+        return fullList;
     }
 }
