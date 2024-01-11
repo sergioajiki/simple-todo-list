@@ -13,7 +13,7 @@ public class Task {
     private Long id;
     private String taskName;
     private String description;
-    private LocalDate taskCreationDate;
+    private LocalDate taskCreationDate = LocalDate.now();
     private String priority;
 
     public Long getId() {
@@ -44,16 +44,14 @@ public class Task {
         return taskCreationDate;
     }
 
-    public void setTaskCreationDate(LocalDate taskCreationDate) {
-        this.taskCreationDate = taskCreationDate;
-    }
+    public void setTaskCreationDate(LocalDate taskCreationDate) { this.taskCreationDate = taskCreationDate; }
 
     public String getPriority() {
         return priority;
     }
 
     public void setPriority(String priority) {
-        priority = priority;
+        this.priority = priority;
     }
 
 }
