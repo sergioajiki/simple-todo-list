@@ -5,6 +5,7 @@ import com.simpletodolist.simpletodolist.dto.TaskWithDateDto;
 import com.simpletodolist.simpletodolist.service.TaskService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +24,7 @@ public class TaskController {
 
     @PostMapping
     @Operation(description = "Registrar Tarefa")
-    public ResponseEntity<TaskWithDateDto> createTask(@RequestBody TaskDto taskDto) {
+    public ResponseEntity<TaskWithDateDto> createTask(@RequestBody @Valid TaskDto taskDto) {
         TaskWithDateDto createdTask = taskService.create(taskDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdTask);
     }
