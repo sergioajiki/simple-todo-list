@@ -14,7 +14,7 @@ public class Task {
     private String taskName;
     private String description;
     private LocalDate taskCreationDate;
-    private String Priority;
+    private String priority;
 
     public Long getId() {
         return id;
@@ -49,11 +49,11 @@ public class Task {
     }
 
     public String getPriority() {
-        return Priority;
+        return priority;
     }
 
     public void setPriority(String priority) {
-        Priority = priority;
+        priority = priority;
     }
 
 }
