@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TaskService {
@@ -40,5 +41,10 @@ public class TaskService {
             fullList.add(taskWithDateDto);
         });
         return fullList;
+    }
+
+    public String deleteTask(Long id) {
+        taskRepository.deleteById(id);
+        return "Tarefa com o id " + id + " apagada com sucesso";
     }
 }
