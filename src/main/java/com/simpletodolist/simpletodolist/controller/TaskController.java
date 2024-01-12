@@ -54,7 +54,7 @@ public class TaskController {
 
     @PatchMapping("/updatePriority/{id}")
     @Operation(description = "Atualiza prioridade da tarefa")
-    public ResponseEntity<TaskWithDateDto> updatePriorityById(@PathVariable Long id, @RequestBody PriorityDto priority) {
+    public ResponseEntity<TaskWithDateDto> updatePriorityById(@PathVariable Long id, @RequestBody @Valid PriorityDto priority) {
         TaskWithDateDto updatedTask = taskService.updatePriorityById(id, priority);
         return ResponseEntity.status(HttpStatus.OK).body(updatedTask);
     }

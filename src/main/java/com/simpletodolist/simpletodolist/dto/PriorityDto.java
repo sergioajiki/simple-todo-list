@@ -1,8 +1,8 @@
 package com.simpletodolist.simpletodolist.dto;
 
-import com.simpletodolist.simpletodolist.entity.Task;
+import jakarta.validation.constraints.NotNull;
 
 public record PriorityDto(
-        PriorityEnum priority
+        @NotNull(message = "Field priority can not be null or empty") PriorityEnum priority
 ) {
 }
