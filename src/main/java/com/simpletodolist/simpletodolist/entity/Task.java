@@ -17,6 +17,7 @@ public class Task {
     private LocalDate taskCreationDate = LocalDate.now();
     private PriorityEnum priority;
 
+
     public Long getId() {
         return id;
     }
