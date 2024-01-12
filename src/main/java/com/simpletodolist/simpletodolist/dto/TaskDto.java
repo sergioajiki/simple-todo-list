@@ -25,6 +25,4 @@ public record TaskDto(
         task.setPriority(taskDto.priority);
         return task;
     }
-
-    ;
 }
