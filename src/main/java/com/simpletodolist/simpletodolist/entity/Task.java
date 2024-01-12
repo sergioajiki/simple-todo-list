@@ -1,8 +1,8 @@
 package com.simpletodolist.simpletodolist.entity;
 
 import com.simpletodolist.simpletodolist.dto.PriorityEnum;
+import com.simpletodolist.simpletodolist.dto.StatusEnum;
 import jakarta.persistence.*;
-
 import java.time.LocalDate;
 
 
@@ -10,21 +10,20 @@ import java.time.LocalDate;
 @Table(name = "tasks")
 public class Task {
     @Id
-    @GeneratedValue(strategy =  GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String taskName;
     private String description;
     private LocalDate taskCreationDate = LocalDate.now();
     private PriorityEnum priority;
-
+    private StatusEnum currentState;
+    private LocalDate taskDoneDate;
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public void setId(Long id) { this.id = id; }
 
     public String getTaskName() {
         return taskName;
@@ -46,8 +45,10 @@ public class Task {
         return taskCreationDate;
     }
 
-//    public void setTaskCreationDate(LocalDate taskCreationDate) { this.taskCreationDate = taskCreationDate; }
-    public void setTaskCreationDate(LocalDate taskCreationDate) { this.taskCreationDate = taskCreationDate; }
+    //    public void setTaskCreationDate(LocalDate taskCreationDate) { this.taskCreationDate = taskCreationDate; }
+    public void setTaskCreationDate(LocalDate taskCreationDate) {
+        this.taskCreationDate = taskCreationDate;
+    }
 
     public PriorityEnum getPriority() {
         return priority;
@@ -57,4 +58,11 @@ public class Task {
         this.priority = priority;
     }
 
+    public StatusEnum getCurrentState() { return currentState; }
+
+    public void setCurrentState(StatusEnum currentState) { this.currentState = currentState; }
+
+    public LocalDate getTaskDoneDate() { return taskDoneDate; }
+
+    public void setTaskDoneDate(LocalDate taskDoneDate) { this.taskDoneDate = taskDoneDate; }
 }

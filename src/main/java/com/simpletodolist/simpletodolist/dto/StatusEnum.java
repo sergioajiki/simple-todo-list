@@ -2,11 +2,11 @@ package com.simpletodolist.simpletodolist.dto;
 
 public enum StatusEnum {
     INPROGRESS("INPROGRESS"),
-    DONE("DONE"),
+    DONE("DONE");
 
-    private final String inProgress;
-    StatusEnum(String inProgress) {
-        this.inProgress = inProgress;
+    private final String currentState;
+    StatusEnum(String currentState) {
+        this.currentState = currentState;
     }
-    public String getInProgress() { return inProgress; }
+    public String getCurrentState() { return currentState; }
 }
