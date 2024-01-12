@@ -36,6 +36,20 @@ public class TaskController {
         return ResponseEntity.status(HttpStatus.OK).body(allTasks);
     }
 
+    @PatchMapping("/updateTaskDone/{id}")
+    @Operation(description = "Atualiza para tarefa concluída")
+    public ResponseEntity<TaskWithDateDto> updateDoneById(@PathVariable Long id) {
+        TaskWithDateDto taskDone = taskService.updateDoneById(id);
+        return ResponseEntity.status(HttpStatus.OK).body(taskDone);
+    }
+
+    @PatchMapping("/updateTaskInprogress/{id}")
+    @Operation(description = "Atualiza para tarefa em progresso")
+    public ResponseEntity<TaskWithDateDto> updateInProgressById(@PathVariable Long id) {
+        TaskWithDateDto taskInProgress = taskService.updateInProgressById(id);
+        return ResponseEntity.status(HttpStatus.OK).body(taskInProgress);
+    }
+
     @DeleteMapping("/{id}")
     @Operation(description = "Delete task by id")
     public ResponseEntity<String> deleteUserById(@PathVariable @Valid Long id) {
@@ -43,4 +57,7 @@ public class TaskController {
         String result = taskService.deleteTask(id);
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
+
+
+
 }

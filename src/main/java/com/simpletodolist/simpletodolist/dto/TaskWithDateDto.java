@@ -8,7 +8,11 @@ public record TaskWithDateDto(
         String taskName,
         String description,
         LocalDate taskCreationDate,
-        PriorityEnum priority
+        PriorityEnum priority,
+        StatusEnum currentState,
+        LocalDate taskDoneDate
+
+
 ) {
     public static TaskWithDateDto taskToTaskWithDateDto(Task task) {
         return new TaskWithDateDto(
@@ -16,7 +20,9 @@ public record TaskWithDateDto(
                 task.getTaskName(),
                 task.getDescription(),
                 task.getTaskCreationDate(),
-                task.getPriority()
+                task.getPriority(),
+                task.getCurrentState(),
+                task.getTaskDoneDate()
         );
     }
 }
