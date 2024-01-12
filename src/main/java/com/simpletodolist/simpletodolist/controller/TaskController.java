@@ -1,5 +1,7 @@
 package com.simpletodolist.simpletodolist.controller;
 
+import com.simpletodolist.simpletodolist.dto.PriorityDto;
+import com.simpletodolist.simpletodolist.dto.PriorityEnum;
 import com.simpletodolist.simpletodolist.dto.TaskDto;
 import com.simpletodolist.simpletodolist.dto.TaskWithDateDto;
 import com.simpletodolist.simpletodolist.service.TaskService;
@@ -50,6 +52,13 @@ public class TaskController {
         return ResponseEntity.status(HttpStatus.OK).body(taskInProgress);
     }
 
+    @PatchMapping("/updatePriority/{id}")
+    @Operation(description = "Atualiza prioridade da tarefa")
+    public ResponseEntity<TaskWithDateDto> updatePriorityById(@PathVariable Long id, @RequestBody PriorityDto priority) {
+        TaskWithDateDto updatedTask = taskService.updatePriorityById(id, priority);
+        return ResponseEntity.status(HttpStatus.OK).body(updatedTask);
+    }
+
     @DeleteMapping("/{id}")
     @Operation(description = "Delete task by id")
     public ResponseEntity<String> deleteUserById(@PathVariable @Valid Long id) {
@@ -57,7 +66,4 @@ public class TaskController {
         String result = taskService.deleteTask(id);
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
-
-
-
 }

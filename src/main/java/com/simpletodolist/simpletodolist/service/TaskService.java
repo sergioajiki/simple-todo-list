@@ -1,12 +1,9 @@
 package com.simpletodolist.simpletodolist.service;
 
-import com.simpletodolist.simpletodolist.dto.StatusEnum;
-import com.simpletodolist.simpletodolist.dto.TaskDto;
-import com.simpletodolist.simpletodolist.dto.TaskWithDateDto;
+import com.simpletodolist.simpletodolist.dto.*;
 import com.simpletodolist.simpletodolist.entity.Task;
 import com.simpletodolist.simpletodolist.exception.NotFoundException;
 import com.simpletodolist.simpletodolist.repository.TaskRepository;
-import jakarta.validation.constraints.Null;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -72,6 +69,18 @@ public class TaskService {
         Task taskToUpdate = taskOptional.get();
         taskToUpdate.setTaskDoneDate(null);
         taskToUpdate.setCurrentState(StatusEnum.INPROGRESS);
+        taskRepository.save(taskToUpdate);
+        TaskWithDateDto taskToUpdateDto = TaskWithDateDto.taskToTaskWithDateDto(taskToUpdate);
+        return taskToUpdateDto;
+    }
+
+    public TaskWithDateDto updatePriorityById(Long id, PriorityDto priority) {
+        Optional<Task> taskOptional = taskRepository.findById(id);
+        if (taskOptional.isEmpty()) {
+            throw new NotFoundException("Id " + id + " does not match any task");
+        }
+        Task taskToUpdate = taskOptional.get();
+        taskToUpdate.setPriority(priority.priority());
         taskRepository.save(taskToUpdate);
         TaskWithDateDto taskToUpdateDto = TaskWithDateDto.taskToTaskWithDateDto(taskToUpdate);
         return taskToUpdateDto;

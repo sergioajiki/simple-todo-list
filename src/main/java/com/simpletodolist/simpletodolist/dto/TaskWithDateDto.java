@@ -11,8 +11,6 @@ public record TaskWithDateDto(
         PriorityEnum priority,
         StatusEnum currentState,
         LocalDate taskDoneDate
-
-
 ) {
     public static TaskWithDateDto taskToTaskWithDateDto(Task task) {
         return new TaskWithDateDto(

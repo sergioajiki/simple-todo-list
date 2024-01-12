@@ -4,8 +4,6 @@ import com.simpletodolist.simpletodolist.entity.Task;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-import java.time.LocalDate;
-
 public record TaskDto(
 //        Long id,
         @NotBlank(message = "Field taskName can not be null or empty") String taskName,
