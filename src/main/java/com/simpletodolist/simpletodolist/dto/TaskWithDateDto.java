@@ -8,7 +8,7 @@ public record TaskWithDateDto(
         String taskName,
         String description,
         LocalDate taskCreationDate,
-        String priority
+        PriorityEnum priority
 ) {
     public static TaskWithDateDto taskToTaskWithDateDto(Task task) {
         return new TaskWithDateDto(

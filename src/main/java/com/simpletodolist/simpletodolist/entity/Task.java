@@ -1,5 +1,6 @@
 package com.simpletodolist.simpletodolist.entity;
 
+import com.simpletodolist.simpletodolist.dto.PriorityEnum;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -14,7 +15,7 @@ public class Task {
     private String taskName;
     private String description;
     private LocalDate taskCreationDate = LocalDate.now();
-    private String priority;
+    private PriorityEnum priority;
 
     public Long getId() {
         return id;
@@ -47,11 +48,11 @@ public class Task {
 //    public void setTaskCreationDate(LocalDate taskCreationDate) { this.taskCreationDate = taskCreationDate; }
     public void setTaskCreationDate(LocalDate taskCreationDate) { this.taskCreationDate = taskCreationDate; }
 
-    public String getPriority() {
+    public PriorityEnum getPriority() {
         return priority;
     }
 
-    public void setPriority(String priority) {
+    public void setPriority(PriorityEnum priority) {
         this.priority = priority;
     }
 

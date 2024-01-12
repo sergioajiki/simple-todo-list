@@ -7,6 +7,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -52,6 +53,17 @@ public class GeneralControllerAdvice {
                 "Invalid Parameters",
                 "Invalid Request Body",
                 listProblem
+        );
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(problem);
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<Problem>  handleHttpMessageNotReadable(HttpMessageNotReadableException exception) {
+        Problem problem = new Problem(
+                HttpStatus.BAD_REQUEST.value(),
+                "Invalid Parameters",
+                exception.getMessage(),
+                null
         );
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(problem);
     }
