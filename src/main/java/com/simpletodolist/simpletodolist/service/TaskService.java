@@ -49,11 +49,7 @@ public class TaskService {
     }
 
     public TaskWithDateDto updateDoneById(Long id) {
-        Optional<Task> taskOptional = taskRepository.findById(id);
-        if (taskOptional.isEmpty()) {
-            throw new NotFoundException("Id " + id + " does not match any task");
-        }
-        Task taskToUpdate = taskOptional.get();
+        Task taskToUpdate = verifyId(id);
         taskToUpdate.setTaskDoneDate(LocalDate.now());
         taskToUpdate.setCurrentState(StatusEnum.DONE);
         taskRepository.save(taskToUpdate);
@@ -62,11 +58,7 @@ public class TaskService {
     }
 
     public TaskWithDateDto updateInProgressById(Long id) {
-        Optional<Task> taskOptional = taskRepository.findById(id);
-        if (taskOptional.isEmpty()) {
-            throw new NotFoundException("Id " + id + " does not match any task");
-        }
-        Task taskToUpdate = taskOptional.get();
+        Task taskToUpdate = verifyId(id);
         taskToUpdate.setTaskDoneDate(null);
         taskToUpdate.setCurrentState(StatusEnum.INPROGRESS);
         taskRepository.save(taskToUpdate);
@@ -75,11 +67,7 @@ public class TaskService {
     }
 
     public TaskWithDateDto updatePriorityById(Long id, PriorityDto priority) {
-        Optional<Task> taskOptional = taskRepository.findById(id);
-        if (taskOptional.isEmpty()) {
-            throw new NotFoundException("Id " + id + " does not match any task");
-        }
-        Task taskToUpdate = taskOptional.get();
+        Task taskToUpdate = verifyId(id);
         taskToUpdate.setPriority(priority.priority());
         taskRepository.save(taskToUpdate);
         TaskWithDateDto taskToUpdateDto = TaskWithDateDto.taskToTaskWithDateDto(taskToUpdate);
@@ -93,5 +81,13 @@ public class TaskService {
         }
         taskRepository.deleteById(id);
         return "Tarefa com o id " + id + " apagada com sucesso";
+    }
+
+    private Task verifyId(Long id) {
+        Optional<Task> taskOptional = taskRepository.findById(id);
+        if (taskOptional.isEmpty()) {
+            throw new NotFoundException("Id " + id + " does not match any task");
+        }
+        return taskOptional.get();
     }
 }

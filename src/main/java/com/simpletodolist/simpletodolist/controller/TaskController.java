@@ -17,6 +17,7 @@ import java.util.List;
 @RestController
 @Tag(name = "Tasks")
 @RequestMapping(value = "/tasks")
+@CrossOrigin
 public class TaskController {
     private final TaskService taskService;
 
@@ -45,7 +46,7 @@ public class TaskController {
         return ResponseEntity.status(HttpStatus.OK).body(taskDone);
     }
 
-    @PatchMapping("/updateTaskInprogress/{id}")
+    @PatchMapping("/updateTaskInProgress/{id}")
     @Operation(description = "Atualiza para tarefa em progresso")
     public ResponseEntity<TaskWithDateDto> updateInProgressById(@PathVariable Long id) {
         TaskWithDateDto taskInProgress = taskService.updateInProgressById(id);
