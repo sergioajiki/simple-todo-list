@@ -1,10 +1,31 @@
+version: '3'
+
 services:
   mysql:
     container_name: db-simple-todolist
     image: mysql:8.0.32
     restart: always
     ports:
-      - 3306:3306
+      - "3306:3306"
     environment:
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: DEV_PASSWORD
       MYSQL_DATABASE: todolistdatabase
+    healthcheck:
+      test: "/usr/bin/mysql --user=root --password=root --execute \"SHOW DATABASES;\""
+      interval: 2s
+      timeout: 20s
+      retries: 10
+
+  backend:
+    build:
+      context: .
+    container_name: backend-simple-todolist
+    restart: always
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+    environment:
+      DB_HOST: jdbc:mysql://mysql:3306/todolistdatabase
+      DB_USERNAME: root
+      DB_PASSWORD: DEV_PASSWORD
