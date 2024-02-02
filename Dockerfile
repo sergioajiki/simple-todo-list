@@ -1,5 +1,5 @@
 # imagem OpenJdk
-FROM adoptopenjdk:17-jdk-hotspot-bionic
+FROM --platform=linux/amd eclipse-temurin:17-jdk-alpine
 #FROM eclipse-temurin:17-jdk-alpine
 # define o diretório de trabalho dentro do conteiner
 WORKDIR /usr/src/app
