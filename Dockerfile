@@ -1,7 +1,8 @@
 # imagem OpenJdk
-FROM eclipse-temurin:17-jdk-alpine
+FROM adoptopenjdk:17-jdk-hotspot-bionic
+#FROM eclipse-temurin:17-jdk-alpine
 # define o diretório de trabalho dentro do conteiner
-WORKDIR /app
+WORKDIR /usr/src/app
 
 COPY pom.xml .
 # copia o JAR da aplicação para o conteiner
