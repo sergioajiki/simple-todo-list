@@ -26,6 +26,6 @@ services:
     depends_on:
       - mysql
     environment:
-      DB_HOST: jdbc:mysql://mysql:3306/todolistdatabase
-      DB_USERNAME: root
-      DB_PASSWORD: DEV_PASSWORD
+      DB_HOST: jdbc:mysql://mysql-11023238-sergioajk-0879.a.aivencloud.com:19779/defaultdb
+      DB_USERNAME: avnadmin
+      DB_PASSWORD: AVNS_18wWiA2JrV-KybazZGf
